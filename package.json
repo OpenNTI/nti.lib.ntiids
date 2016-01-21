@@ -17,9 +17,7 @@
   ],
   "author": "nextthought",
   "license": "UNLICENSED",
-  "dependencies": {
-    "fbjs": "^0.6.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.1.0",
     "babel-eslint": "^4.1.0",

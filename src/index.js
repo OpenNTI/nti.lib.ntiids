@@ -1,7 +1,5 @@
-import isEmpty from 'fbjs/lib/isEmpty';
-
-
 const COMMON_PREFIX = 'tag:nextthought.com,2011-10:';
+
 
 
 export function PropType (props, propName, ComponentName) {
@@ -188,6 +186,7 @@ export function ntiidPrefix (id) {
  * @returns {string} NTIID
  */
 export function parseFragment (fragment) {
+	const isEmpty = s => s == null || s.length === 0;
 	const authority = 'nextthought.com,2011-10';
 
 	if (isEmpty(fragment) || fragment.indexOf('#!') !== 0) {
