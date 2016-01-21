@@ -4,7 +4,9 @@
   "description": "Parse and comprehend ntiids",
   "main": "lib/index.js",
   "scripts": {
-    "test": "make test"
+    "test": "karma start --single-run --reporters dots,html,junit,coverage",
+    "start": "make check",
+    "prepublish": "make test && make"
   },
   "repository": {
     "type": "git",
