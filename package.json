@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Parse and comprehend ntiids",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "karma start --single-run --reporters dots,html,junit,coverage",
     "start": "make check",
