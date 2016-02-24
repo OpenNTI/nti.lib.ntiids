@@ -20,7 +20,9 @@
   ],
   "author": "nextthought",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+    "babel-runtime": "^6.5.0"
+  },
   "devDependencies": {
     "babel-core": "^6.1.0",
     "babel-eslint": "^5.0.0",
