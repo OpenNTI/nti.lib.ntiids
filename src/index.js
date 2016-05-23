@@ -213,16 +213,19 @@ export function parseFragment (fragment) {
 }
 
 
-export function encodeForURI (ntiid) {
-	let cut = COMMON_PREFIX.length;
+encodeForURI.sloppy = id => encodeForURI(id, false);
+export function encodeForURI (ntiid, strict = true) {
+	const {length: cut} = COMMON_PREFIX;
+
 	if (ntiid && ntiid.substr(0, cut) === COMMON_PREFIX) {
 		ntiid = ntiid.substr(cut);
-	} else if(!isNTIID(ntiid)) {
+	} else if(!isNTIID(ntiid) && strict) {
 		throw new Error('Invalid NTIID');
 	}
 
 	return encodeURIComponent(ntiid);
 }
+
 
 
 export function decodeFromURI (component) {

@@ -64,6 +64,40 @@ describe('NTIID Tests', ()=> {
 	});
 
 
+	it('encode throws if invalid id by default', () => {
+		for (let bad of ['junk', 'fooboo']) {
+			expect(() => decodeFromURI(encodeForURI(bad))).toThrowError('Invalid NTIID');
+		}
+	});
+
+
+	it('encode throws if invalid id with strict = true', () => {
+		for (let bad of ['junk', 'fooboo']) {
+			expect(() => decodeFromURI(encodeForURI(bad, true))).toThrowError('Invalid NTIID');
+			expect(() => decodeFromURI(encodeForURI(bad, 1))).toThrowError('Invalid NTIID');
+			expect(() => decodeFromURI(encodeForURI(bad, {}))).toThrowError('Invalid NTIID');
+		}
+	});
+
+
+	it('encode does not throw if invalid id with strict = false', () => {
+		for (let bad of ['junk', 'fooboo']) {
+			expect(() => decodeFromURI(encodeForURI(bad, false))).not.toThrowError('Invalid NTIID');
+			expect(() => decodeFromURI(encodeForURI(bad, 0))).not.toThrowError('Invalid NTIID');
+			expect(() => decodeFromURI(encodeForURI(bad, null))).not.toThrowError('Invalid NTIID');
+
+			//subtle (passing "undefined" to the arg triggers default value)
+			expect(() => decodeFromURI(encodeForURI(bad, void 0))).toThrowError('Invalid NTIID');
+			expect(() => decodeFromURI(encodeForURI(bad, undefined))).toThrowError('Invalid NTIID');
+		}
+	});
+
+
+	it('encode.sloppy() does not throw if invalid id', () => {
+		expect(()=> encodeForURI.sloppy('foobar')).not.toThrowError('Invalid NTIID');
+	});
+
+
 	it('encode/decode for/from uri should produce the same string', () => {
 
 		for (let id of IDS) {
