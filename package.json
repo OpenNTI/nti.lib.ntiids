@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://repos.nextthought.com/git/nti.lib.ntiids"
+    "url": "https://github.com/NextThought/nti.lib.ntiids.git"
   },
   "keywords": [
     "ntiids"
