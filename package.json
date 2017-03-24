@@ -1,6 +1,6 @@
 {
   "name": "nti-lib-ntiids",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parse and comprehend ntiids",
   "main": "lib/index.js",
   "files": [
@@ -47,7 +47,9 @@
       "!**/*.spec.js"
     ],
     "coverageDirectory": "reports/coverage",
-    "roots": ["<rootDir>/src/"],
+    "roots": [
+      "<rootDir>/src/"
+    ],
     "testResultsProcessor": "./node_modules/jest-junit"
   },
   "jest-junit": {
