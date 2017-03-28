@@ -1,21 +1,23 @@
 .PHONY: clean check test
 
-LIBDIR = lib
+REPORTS = reports
+LIB = lib
 
 all: node_modules lib
 
 node_modules: package.json
+	@rm -rf ./node_modules
 	@npm install
-	@touch $@
 
 check:
 	@eslint --ext .js,.jsx ./src
 
-test: node_modules check
+test: node_modules clean check
 	@jest
 
 clean:
-	@rm -rf $(LIBDIR)
+	@rm -rf $(LIB)
+	@rm -rf $(REPORTS)
 
 lib: clean
 	@NODE_ENV=rollup rollup -c

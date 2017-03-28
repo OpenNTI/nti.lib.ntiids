@@ -47,6 +47,7 @@
       "!**/*.spec.js"
     ],
     "coverageDirectory": "reports/coverage",
+    "coverageReporters": ["lcov", "cobertura"],
     "roots": [
       "<rootDir>/src/"
     ],
