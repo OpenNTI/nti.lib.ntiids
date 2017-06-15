@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import {
 	PropType,
 	parseNTIID,
@@ -22,7 +23,7 @@ const IDS = [ROOT, SOME_ASSIGNMENT, SOME_NAMED, SOME_ENTITY, SOME_OID, SOME_COUR
 
 describe('NTIID Tests', ()=> {
 
-	it('PropType validates NTIIDs', () => {
+	test ('PropType validates NTIIDs', () => {
 		const ComponentName = 'UnitTest';
 		const propName = 'prop';
 		let props = {};
@@ -51,7 +52,7 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('identify ids', () => {
+	test ('identify ids', () => {
 
 		for (let id of IDS) {
 			expect(isNTIID(id)).toBeTruthy();
@@ -64,14 +65,14 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('encode throws if invalid id by default', () => {
+	test ('encode throws if invalid id by default', () => {
 		for (let bad of ['junk', 'fooboo']) {
 			expect(() => decodeFromURI(encodeForURI(bad))).toThrowError('Invalid NTIID');
 		}
 	});
 
 
-	it('encode throws if invalid id with strict = true', () => {
+	test ('encode throws if invalid id with strict = true', () => {
 		for (let bad of ['junk', 'fooboo']) {
 			expect(() => decodeFromURI(encodeForURI(bad, true))).toThrowError('Invalid NTIID');
 			expect(() => decodeFromURI(encodeForURI(bad, 1))).toThrowError('Invalid NTIID');
@@ -80,7 +81,7 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('encode does not throw if invalid id with strict = false', () => {
+	test ('encode does not throw if invalid id with strict = false', () => {
 		for (let bad of ['junk', 'fooboo']) {
 			expect(() => decodeFromURI(encodeForURI(bad, false))).not.toThrowError('Invalid NTIID');
 			expect(() => decodeFromURI(encodeForURI(bad, 0))).not.toThrowError('Invalid NTIID');
@@ -93,12 +94,12 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('encode.sloppy() does not throw if invalid id', () => {
+	test ('encode.sloppy() does not throw if invalid id', () => {
 		expect(()=> encodeForURI.sloppy('foobar')).not.toThrowError('Invalid NTIID');
 	});
 
 
-	it('encode/decode for/from uri should produce the same string', () => {
+	test ('encode/decode for/from uri should produce the same string', () => {
 
 		for (let id of IDS) {
 			expect(decodeFromURI(encodeForURI(id))).toBe(id);
@@ -111,7 +112,7 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('ntiidEquals compares ids (can ignore SpecificProvider)', () => {
+	test ('ntiidEquals compares ids (can ignore SpecificProvider)', () => {
 		const A = SOME_SYSTEM_CREATED_GRADE;
 		const B = SOME_USER_UPDATED_GRADE;
 
@@ -127,7 +128,7 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('escapeId', ()=> {
+	test ('escapeId', ()=> {
 		const expected = 'tag\\3a nextthought\\2e com\\2c 2011-10\\3a system-OID-0x0c2b97\\3a 5573657273\\3a yApwFmaJ4a1';
 		const result = escapeId('tag:nextthought.com,2011-10:system-OID-0x0c2b97:5573657273:yApwFmaJ4a1');
 
@@ -135,7 +136,7 @@ describe('NTIID Tests', ()=> {
 	});
 
 
-	it('parseNTIID should produce an object if its an NTIID', () => {
+	test ('parseNTIID should produce an object if its an NTIID', () => {
 
 		for (let id of IDS) {
 			expect(typeof parseNTIID(id)).toBe('object');
