@@ -26,6 +26,6 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
-    "nti-lib-scripts": "^1.0.6"
+    "nti-lib-scripts": "^1.0.10"
   }
 }
