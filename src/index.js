@@ -156,8 +156,8 @@ export function isNTIID (id) {
  */
 export function escapeId (id) {
 	return id.replace(/:/g, '\\3a ') //no colons
-			.replace(/,/g, '\\2c ')//no commas
-			.replace(/\./g, '\\2e ');//no periods
+		.replace(/,/g, '\\2c ')//no commas
+		.replace(/\./g, '\\2e ');//no periods
 }
 
 
