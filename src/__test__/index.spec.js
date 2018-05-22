@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import {
 	PropType,
-	parseNTIID,
 	ntiidEquals,
 	isNTIID,
 	escapeId,
@@ -133,17 +132,5 @@ describe('NTIID Tests', ()=> {
 		const result = escapeId('tag:nextthought.com,2011-10:system-OID-0x0c2b97:5573657273:yApwFmaJ4a1');
 
 		expect(result).toBe(expected);
-	});
-
-
-	test ('parseNTIID should produce an object if its an NTIID', () => {
-
-		for (let id of IDS) {
-			expect(typeof parseNTIID(id)).toBe('object');
-		}
-
-		//TODO: perform deeper validation
-
-		expect(parseNTIID('foo')).toBeFalsy();
 	});
 });
