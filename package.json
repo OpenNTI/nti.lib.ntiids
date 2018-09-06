@@ -3,8 +3,10 @@
   "version": "1.4.0-alpha",
   "description": "Parse and comprehend ntiids",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "scripts": {
     "test": "lib-scripts test",
@@ -30,6 +32,6 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
-    "@nti/lib-scripts": "^1.16.0"
+    "@nti/lib-scripts": "^2.0.0"
   }
 }
