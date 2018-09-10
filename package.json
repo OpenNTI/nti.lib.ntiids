@@ -1,6 +1,6 @@
 {
   "name": "@nti/lib-ntiids",
-  "version": "1.4.0",
+  "version": "1.5.0-alpha",
   "description": "Parse and comprehend ntiids",
   "main": "lib/index.js",
   "module": "src/index.js",
