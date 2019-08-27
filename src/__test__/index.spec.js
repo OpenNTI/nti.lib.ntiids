@@ -111,6 +111,20 @@ describe('NTIID Tests', ()=> {
 	});
 
 
+	test ('decode of non-empty-string values == null', () => {
+		expect(decodeFromURI()).toBe(null);
+		expect(decodeFromURI(undefined)).toBe(null);
+		expect(decodeFromURI(void 0)).toBe(null);
+		expect(decodeFromURI(null)).toBe(null);
+		expect(decodeFromURI(false)).toBe(null);
+		expect(decodeFromURI(true)).toBe(null);
+		expect(decodeFromURI(0)).toBe(null);
+		expect(decodeFromURI(100)).toBe(null);
+		expect(decodeFromURI('')).toBe(null);
+		expect(decodeFromURI('t')).not.toBe(null);
+	});
+
+
 	test ('ntiidEquals compares ids (can ignore SpecificProvider)', () => {
 		const A = SOME_SYSTEM_CREATED_GRADE;
 		const B = SOME_USER_UPDATED_GRADE;

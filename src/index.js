@@ -143,6 +143,10 @@ export function encodeForURI (ntiid, strict = true) {
 
 
 export function decodeFromURI (component) {
+	if (typeof component !== 'string' || !component) {
+		return null;
+	}
+
 	let ntiid = decodeURIComponent(component);
 
 	if (!isNTIID(ntiid) && ntiid.substr(0, 3) !== 'tag' && ntiid.length > 0) {
