@@ -2,10 +2,10 @@
   "name": "@nti/lib-ntiids",
   "version": "1.6.0-alpha",
   "description": "Parse and comprehend ntiids",
-  "main": "lib/index.js",
+  "main": ".index.js",
   "module": "src/index.js",
   "files": [
-    "lib",
+    ".index.js",
     "src"
   ],
   "scripts": {
@@ -27,7 +27,9 @@
   ],
   "author": "nextthought",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+    "esm": "^3.2.25"
+  },
   "devDependencies": {
     "@nti/lib-scripts": "^2.0.0"
   }
