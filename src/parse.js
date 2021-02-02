@@ -3,7 +3,7 @@
  * See http://excelsior.nextthought.com/server-docs/ntiid-structure/
  *
  * @param {string} id ntiid
- * @returns {object} an object containing the components of the id
+ * @returns {Object} an object containing the components of the id
  */
 export default function parseNTIID (id) {
 	let parts = (typeof id !== 'string' ? (id || '').toString() : id).split(':'),
