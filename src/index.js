@@ -1,14 +1,11 @@
-import {COMMON_PREFIX} from './constants';
+import { COMMON_PREFIX } from './constants';
 import parseNTIID from './parse';
 
 export * from './constants';
 export * as HREF from './href';
-export {
-	parseNTIID
-};
+export { parseNTIID };
 
-
-export function PropType (props, propName, ComponentName) {
+export function PropType(props, propName, ComponentName) {
 	try {
 		PropType.isRequired(props, propName, ComponentName);
 	} catch (e) {
@@ -20,13 +17,13 @@ export function PropType (props, propName, ComponentName) {
 
 PropType.isRequired = function (props, propName, ComponentName) {
 	if (!isNTIID(props[propName])) {
-		throw new Error(`"${props[propName]}" is not a invalid NTIID (${propName} on ${ComponentName})`);
+		throw new Error(
+			`"${props[propName]}" is not a invalid NTIID (${propName} on ${ComponentName})`
+		);
 	}
 };
 
-
-
-function normalizeSpecificProvider (id) {
+function normalizeSpecificProvider(id) {
 	const o = parseNTIID(id);
 	if (!o) {
 		return id;
@@ -36,8 +33,7 @@ function normalizeSpecificProvider (id) {
 	return o.toString();
 }
 
-
-export function ntiidEquals (a, b, ignoreSpecificProvider = true) {
+export function ntiidEquals(a, b, ignoreSpecificProvider = true) {
 	if (a === b) {
 		return true;
 	}
@@ -51,29 +47,26 @@ export function ntiidEquals (a, b, ignoreSpecificProvider = true) {
 		const idB = normalizeSpecificProvider(b);
 
 		return idA === idB;
-
 	} catch (e) {
 		return false;
 	}
 }
 
-
-export function isNTIID (id) {
+export function isNTIID(id) {
 	return Boolean(parseNTIID(id));
 }
-
 
 /**
  * CSS escape ids
  * @param {string} id ntiid
  * @returns {string} CSS-friendly string to use in a selector
  */
-export function escapeId (id) {
-	return id.replace(/:/g, '\\3a ') //no colons
-		.replace(/,/g, '\\2c ')//no commas
-		.replace(/\./g, '\\2e ');//no periods
+export function escapeId(id) {
+	return id
+		.replace(/:/g, '\\3a ') //no colons
+		.replace(/,/g, '\\2c ') //no commas
+		.replace(/\./g, '\\2e '); //no periods
 }
-
 
 /**
  * Returns the prefix of the content ntiid we think this ntiid would reside beneath
@@ -83,7 +76,7 @@ export function escapeId (id) {
  * @param {string} id ntiid
  * @returns {string} prefix
  */
-export function ntiidPrefix (id) {
+export function ntiidPrefix(id) {
 	let ntiid = parseNTIID(id);
 	if (ntiid) {
 		ntiid.specific.type = 'HTML';
@@ -92,14 +85,13 @@ export function ntiidPrefix (id) {
 	return ntiid && ntiid.toString();
 }
 
-
 /**
  * Parse the "URL friendly" NTIID we made for the legacy webapp.
  * @deprecated
  * @param {stirng} fragment The string from the url fragement
  * @returns {string} NTIID
  */
-export function parseFragment (fragment) {
+export function parseFragment(fragment) {
 	const isEmpty = s => s == null || s.length === 0;
 	const authority = 'nextthought.com,2011-10';
 
@@ -126,23 +118,20 @@ export function parseFragment (fragment) {
 	return ['tag', authority, s.join('-')].join(':');
 }
 
-
 encodeForURI.sloppy = id => encodeForURI(id, false);
-export function encodeForURI (ntiid, strict = true) {
-	const {length: cut} = COMMON_PREFIX;
+export function encodeForURI(ntiid, strict = true) {
+	const { length: cut } = COMMON_PREFIX;
 
 	if (ntiid && ntiid.substr(0, cut) === COMMON_PREFIX) {
 		ntiid = ntiid.substr(cut);
-	} else if(!isNTIID(ntiid) && strict) {
+	} else if (!isNTIID(ntiid) && strict) {
 		throw new Error('Invalid NTIID');
 	}
 
 	return encodeURIComponent(ntiid);
 }
 
-
-
-export function decodeFromURI (component) {
+export function decodeFromURI(component) {
 	if (typeof component !== 'string' || !component) {
 		return null;
 	}

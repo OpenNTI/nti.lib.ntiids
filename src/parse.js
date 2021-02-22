@@ -5,9 +5,12 @@
  * @param {string} id ntiid
  * @returns {Object} an object containing the components of the id
  */
-export default function parseNTIID (id) {
-	let parts = (typeof id !== 'string' ? (id || '').toString() : id).split(':'),
-		authority, specific,
+export default function parseNTIID(id) {
+	let parts = (typeof id !== 'string' ? (id || '').toString() : id).split(
+			':'
+		),
+		authority,
+		specific,
 		result = {};
 
 	if (parts.length < 3 || parts[0] !== 'tag') {
@@ -26,7 +29,7 @@ export default function parseNTIID (id) {
 
 	result.authority = {
 		name: authority[0],
-		date: authority[1]
+		date: authority[1],
 	};
 
 	//join any parts after the 2nd into the specific portion that will
@@ -37,33 +40,28 @@ export default function parseNTIID (id) {
 
 	result.specific = {
 		type: specific.length === 3 ? specific[1] : specific[0],
-		typeSpecific: specific.length === 3 ? specific[2] : specific[1]
+		typeSpecific: specific.length === 3 ? specific[2] : specific[1],
 	};
 
 	//Define a setter on provider property so we can match the ds escaping of '-' to '_'
 	Object.defineProperty(result.specific, 'provider', {
-		get () { return this.$$provider; },
-		set (p) {
+		get() {
+			return this.$$provider;
+		},
+		set(p) {
 			if (p && p.replace) {
 				p = p.replace(/-/g, '_');
 			}
 			this.$$provider = p;
-		}
+		},
 	});
 
 	result.specific.provider = specific.length === 3 ? specific[0] : null;
 
 	result.toString = function () {
 		let m = this,
-			a = [
-				m.authority.name,
-				m.authority.date
-			],
-			s = [
-				m.specific.provider,
-				m.specific.type,
-				m.specific.typeSpecific
-			];
+			a = [m.authority.name, m.authority.date],
+			s = [m.specific.provider, m.specific.type, m.specific.typeSpecific];
 		if (!m.specific.provider) {
 			s.splice(0, 1);
 		}
