@@ -1,16 +1,11 @@
+import { Base64 } from 'js-base64';
+
 import { COMMON_PREFIX, HREF_SPECIFIC_TYPE } from './constants';
 import parseNTIID from './parse';
 
-const { atob, btoa } = global;
-
 export function encodeIdFrom(href) {
-	try {
-		const id = encodeURIComponent(btoa(href));
-		return `${COMMON_PREFIX}${HREF_SPECIFIC_TYPE}-${id}`;
-	} catch (e) {
-		console.error('Missing polyfill for btoa'); //eslint-disable-line no-console
-		throw e;
-	}
+	const id = encodeURIComponent(Base64.encode(href));
+	return `${COMMON_PREFIX}${HREF_SPECIFIC_TYPE}-${id}`;
 }
 
 export function isHrefId(id) {
@@ -25,10 +20,6 @@ export function decodeHrefFrom(id) {
 	}
 
 	const { typeSpecific } = data;
-	try {
-		return atob(decodeURIComponent(typeSpecific));
-	} catch (e) {
-		console.error('Missing polyfill for atob'); //eslint-disable-line no-console
-		throw e;
-	}
+
+	return Base64.decode(decodeURIComponent(typeSpecific));
 }
