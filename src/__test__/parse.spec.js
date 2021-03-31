@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import parseNTIID from '../parse';
+import parseNTIID from '../parse.js';
 
 const ROOT = 'tag:nextthought.com,2011-10:Root';
 const SOME_ASSIGNMENT =

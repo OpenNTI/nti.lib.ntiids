@@ -1,7 +1,7 @@
-import { Base64 } from 'js-base64';
+import { Base64 } from 'js-base64/base64.mjs';
 
-import { COMMON_PREFIX, HREF_SPECIFIC_TYPE } from './constants';
-import parseNTIID from './parse';
+import { COMMON_PREFIX, HREF_SPECIFIC_TYPE } from './constants.js';
+import parseNTIID from './parse.js';
 
 export function encodeIdFrom(href) {
 	const id = encodeURIComponent(Base64.encode(href));

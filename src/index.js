@@ -1,8 +1,8 @@
-import { COMMON_PREFIX } from './constants';
-import parseNTIID from './parse';
+import { COMMON_PREFIX } from './constants.js';
+import parseNTIID from './parse.js';
 
-export * from './constants';
-export * as HREF from './href';
+export * from './constants.js';
+export * as HREF from './href.js';
 export { parseNTIID };
 
 export function PropType(props, propName, ComponentName) {
