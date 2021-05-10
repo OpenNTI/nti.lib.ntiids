@@ -35,7 +35,8 @@ function normalizeSpecificProvider(id) {
 
 export function ntiidEquals(a, b, ignoreSpecificProvider = true) {
 	if (a === b) {
-		return true;
+		// the inputs are not ntiids, we should return false.
+		return isNTIID(a);
 	}
 
 	if (!ignoreSpecificProvider) {
@@ -46,7 +47,7 @@ export function ntiidEquals(a, b, ignoreSpecificProvider = true) {
 		const idA = normalizeSpecificProvider(a);
 		const idB = normalizeSpecificProvider(b);
 
-		return idA === idB;
+		return idA === idB && isNTIID(a);
 	} catch (e) {
 		return false;
 	}
@@ -58,6 +59,7 @@ export function isNTIID(id) {
 
 /**
  * CSS escape ids
+ *
  * @param {string} id ntiid
  * @returns {string} CSS-friendly string to use in a selector
  */
@@ -72,6 +74,7 @@ export function escapeId(id) {
  * Returns the prefix of the content ntiid we think this ntiid would reside beneath
  * WARNING: Do not USE!!
  * XXX: This is only here because the WebApp uses this. The prefix is not safe.
+ *
  * @deprecated
  * @param {string} id ntiid
  * @returns {string} prefix
@@ -87,6 +90,7 @@ export function ntiidPrefix(id) {
 
 /**
  * Parse the "URL friendly" NTIID we made for the legacy webapp.
+ *
  * @deprecated
  * @param {stirng} fragment The string from the url fragement
  * @returns {string} NTIID

@@ -169,6 +169,12 @@ describe('NTIID Tests', () => {
 		const A = SOME_SYSTEM_CREATED_GRADE;
 		const B = SOME_USER_UPDATED_GRADE;
 
+		expect(ntiidEquals('', '')).toBeFalsy();
+		expect(ntiidEquals(null, null)).toBeFalsy();
+		expect(ntiidEquals(null, undefined)).toBeFalsy();
+		expect(ntiidEquals(undefined, null)).toBeFalsy();
+		expect(ntiidEquals(undefined, undefined)).toBeFalsy();
+
 		expect(ntiidEquals(A, B)).toBeTruthy();
 		expect(ntiidEquals(A, A)).toBeTruthy();
 		expect(ntiidEquals(B, B)).toBeTruthy();
