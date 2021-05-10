@@ -92,7 +92,7 @@ export function ntiidPrefix(id) {
  * Parse the "URL friendly" NTIID we made for the legacy webapp.
  *
  * @deprecated
- * @param {stirng} fragment The string from the url fragement
+ * @param {string} fragment The string from the url fragment
  * @returns {string} NTIID
  */
 export function parseFragment(fragment) {
