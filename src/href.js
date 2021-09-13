@@ -1,4 +1,4 @@
-import { Base64 } from 'js-base64/base64.mjs';
+import { Base64 } from 'js-base64';
 
 import { COMMON_PREFIX, HREF_SPECIFIC_TYPE } from './constants.js';
 import parseNTIID from './parse.js';
