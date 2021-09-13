@@ -27,7 +27,7 @@
   "author": "nextthought",
   "license": "UNLICENSED",
   "dependencies": {
-    "js-base64": "3.6.0"
+    "js-base64": "3.7.0"
   },
   "devDependencies": {
     "@nti/lib-scripts": "^2.0.0"
